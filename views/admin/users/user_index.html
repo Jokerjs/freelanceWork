@@ -1,0 +1,90 @@
+{{@ include ('../../common/html', {type:'发布者首页'})}}
+{{@ include ('../../common/header')}}
+<div class="tpl-page-container tpl-page-header-fixed">
+<!--左侧菜单-->
+    {{@ include ('../../common/left', {index: 'active'} )}}
+    <div class="tpl-content-wrapper">
+        <div class="row">
+            <div class=" am-u-sm-12 row-mb">
+                <div class="tpl-portlet">
+                    <div class="tpl-portlet-title">
+                        <div class="tpl-caption font-green ">
+                            <span>项目进度</span>
+                        </div>
+                    </div>
+                    <div class="am-tabs tpl-index-tabs" data-am-tabs="">
+                        <ul class="am-tabs-nav am-nav am-nav-tabs">
+                            <li class="am-active"><a href="">进行中</a></li>
+                            <li><a href="">已完成</a></li>
+                        </ul>
+                        <div class="am-tabs-bd" style="touch-action: pan-y; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                            <div class="am-tab-panel am-fade am-in am-active" id="tab1">
+                                <div id="wrapperA" class="wrapper wrapper-scroller">
+                                    <div id="scroller" class="scroller" style="transform: translate(0px, 0px) translateZ(0px);">
+                                        <ul class="tpl-task-list tpl-task-remind">
+                                            {{each dateNo}}
+                                                <li>
+                                                <div class="cosB">
+                                                    12分钟前
+                                                </div>
+                                                <div class="cosA">
+                                                    <span class="cosIco">
+                                                        <i class="am-icon-bell-o"></i>
+                                                    </span>
+                                                    <span>
+                                                        {{$value.work_name}}
+                                                    </span>
+                                                    <div>
+                                                        {{$value.work_text}}
+                                                        <span class="tpl-label-info"> 查看详情
+                                                            <i class="am-icon-share"></i>
+                                                        </span>
+                                                    </div>
+
+                                                </div>
+                                            </li>
+                                            {{/each}}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="am-tab-panel am-fade" id="tab2">
+                                <div id="wrapperB" class="wrapper wrapper-scroller">
+                                    <div id="scroller" class="scroller" style="transform: translate(0px, 0px) translateZ(0px);">
+                                        <ul class="tpl-task-list tpl-task-remind">
+                                            {{each dateYes}}
+                                            <li>
+                                                <div class="cosB">
+                                                    12分钟前
+                                                </div>
+                                                <div class="cosA">
+                                                    <span class="cosIco">
+                                                        <i class="am-icon-bell-o"></i>
+                                                    </span>
+                                                    <span>
+                                                        {{$value.work_name}}
+                                                    </span>
+                                                    <div>
+                                                        {{$value.work_text}}
+                                                        <span class="tpl-label-info"> 查看详情
+                                                            <i class="am-icon-share"></i>
+                                                        </span>
+                                                    </div>
+
+                                                </div>
+                                            </li>
+                                            {{/each}}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{{include '../../common/footer'}}

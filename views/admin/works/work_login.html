@@ -1,0 +1,94 @@
+{{@ include ('../../common/html', {type:'开发者登录'})}}
+{{@ include ('../../common/headerLogin')}}
+<div class="login-banner"></div>
+<div class="login-box">
+    <div class="box-con tran">
+        <form class="login-con f-l" action="/works" method="post">
+            <div class="form-group">
+                <input name="UID" type="text" placeholder="邮箱/手机号码">
+                <span class="error-notic" style="display: block">{{message}}</span>
+            </div>
+            <div class="form-group">
+                <input name="PWD" type="password" placeholder="密码">
+                <span class="error-notic">密码不正确</span>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="tran pr">
+                    <span href="javascript:;" class="tran">登录</span>
+                    <img class="loading" src="./images/loading.gif" style="display:block">
+                </button>
+            </div>
+            <div class="from-line"></div>
+            <div class="form-group">
+                <span class="move-signup a-tag tran blue-border">还没有帐号？免费注册
+                    <i class="iconfont tran"></i>
+                </span>
+            </div>
+            <!--<div class="form-group">
+                <span href="javascript:;" class="move-reset a-tag tran">忘记密码？重置
+                    <i class="iconfont tran"></i>
+                </span>
+            </div>-->
+        </form>
+
+        <form id="regForm" class="signup f-l" method="post">
+            <div class="form-group">
+                <div class="signup-form">
+                    <input name="regUid" type="text" placeholder="邮箱" class="email-mobile" onblur="verify.verifyEmail(this)">
+                </div>
+                <span class="error-notic">邮箱格式不正确</span>
+                <span class="error-notic error-regUid">邮箱不能为空</span>
+            </div>
+            <div class="signup-email">
+                <div class="form-group">
+                    <input name="regName" type="text" placeholder="您的名字">
+                </div>
+                <div class="form-group">
+                    <input name="regPwd" type="password" placeholder="密码（字母、数字，至少6位）" onblur="verify.PasswordLenght(this)">
+                    <span class="error-notic">密码长度不够</span>
+                    <span class="error-notic error-regPwd">密码不能为空</span>
+                </div>
+                <div class="form-group">
+                    <button id="reg" type="button" class="tran pr">
+                        <span class="tran">注册</span>
+                        <img class="loading" src="./images/loading.gif">
+                    </button>
+                </div>
+                <p class="view-clause">点击注册，即同意我们的 <a
+                        href="http://www.jq22.com/demo/jquery-dl-150323224246/#">用户隐私条款</a></p>
+            </div>
+            <div class="from-line"></div>
+            <div class="form-group">
+                <a href="javascript:;" class="move-login a-tag tran blue-border">已有帐号？登录<i
+                        class="iconfont tran"></i></a>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="./script/login.js"></script>
+<script>
+    $("#reg").click(function(){
+        verify.verifyEmail($("input[name='regUid']"));
+        verify.PasswordLenght($("input[name='regPwd']"));
+        // console.log(regUid+":"+regPwd);
+        if(regUid==false || regPwd==false){
+            return
+        }else{
+            $.ajax({
+                url: "/works/workReg",
+                data: $('#regForm').serialize(),
+                type: "POST",
+                cache: false,
+                dataType: 'json',
+                success: function (res) {
+                    alert(res.mes);
+                    setTimeout(function(){
+                        window.location.href = "/works"
+                    },500)
+                }
+            })
+        }
+
+    })
+</script>
+{{include '../../common/footer'}}
